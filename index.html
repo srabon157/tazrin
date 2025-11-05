@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tazrin Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+      /* Animated Gradient Background */
+      @keyframes bgMove {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+      }
+      body {
+        background: linear-gradient(120deg, #a1c4fd, #c2e9fb, #d4fc79, #96e6a1);
+        background-size: 300% 300%;
+        animation: bgMove 10s ease infinite;
+      }
+
+      /* Fade Slide */
+      @keyframes fadeSlide {
+        0% { opacity: 0; transform: translateY(40px) scale(0.9); }
+        100% { opacity: 1; transform: translateY(0) scale(1); }
+      }
+      .animate-fadeSlide {
+        animation: fadeSlide 1s ease-out forwards;
+      }
+
+      /* Popup Animation */
+      @keyframes popupShow {
+        0% { transform: scale(0.7); opacity: 0; }
+        60% { transform: scale(1.05); opacity: 1; }
+        100% { transform: scale(1); }
+      }
+      .popup {
+        animation: popupShow 0.5s ease-out forwards;
+      }
+
+      /* Spinner Animation */
+      @keyframes spin {
+        to { transform: rotate(360deg); }
+      }
+      .spinner {
+        border: 3px solid rgba(255, 255, 255, 0.3);
+        border-top: 3px solid white;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        animation: spin 0.8s linear infinite;
+      }
+    </style>
+  </head>
+
+  <body class="flex flex-col justify-center items-center min-h-screen p-5">
+
+    <!-- Title -->
+    <div class="text-center mb-8 animate-fadeSlide backdrop-blur-xl bg-white/40 border border-white/20 rounded-3xl shadow-xl p-6">
+      <p class="text-2xl sm:text-4xl md:text-5xl font-bold text-gray-800">
+        Tazrin Apu, Please Log In to Your Account Now! 
+    </div>
+
+    <!-- Login Box -->
+    <div class="animate-fadeSlide backdrop-blur-2xl bg-white/30 border border-white/30 rounded-3xl shadow-2xl p-6 flex flex-col gap-4 w-full max-w-xs sm:max-w-sm md:max-w-md">
+
+      <!-- Google -->
+      <button onclick="login('Google ✅')"
+        class="flex items-center justify-center gap-3 border border-white/50 rounded-full bg-white/60 backdrop-blur-sm p-3 shadow-md hover:shadow-2xl hover:scale-105 active:scale-95 transition-all duration-300 ease-in-out">
+        <img src="./img/google.png" alt="Google" class="h-8 w-8">
+        <span class="font-medium text-gray-700 text-sm sm:text-base">Sign in with Google</span>
+      </button>
+
+      <!-- Apple -->
+      <button onclick="login('Apple 🍎')"
+        class="flex items-center justify-center gap-3 border border-white/50 rounded-full bg-white/60 backdrop-blur-sm p-3 shadow-md hover:shadow-2xl hover:scale-105 active:scale-95 transition-all duration-300 ease-in-out">
+        <img src="./img/apple-logo.png" alt="Apple" class="h-8 w-8">
+        <span class="font-medium text-gray-700 text-sm sm:text-base">Sign in with Apple Account</span>
+      </button>
+
+      <!-- Facebook -->
+      <button onclick="login('Facebook 💙')"
+        class="flex items-center justify-center gap-3 border border-white/50 rounded-full bg-white/60 backdrop-blur-sm p-3 shadow-md hover:shadow-2xl hover:scale-105 active:scale-95 transition-all duration-300 ease-in-out">
+        <img src="./img/facebook.png" alt="Facebook" class="h-8 w-8">
+        <span class="font-medium text-gray-700 text-sm sm:text-base">Sign in with Tazrin Facebook</span>
+      </button>
+
+      <!-- Safari -->
+      <button onclick="login('Safari 🌐')"
+        class="flex items-center justify-center gap-3 border border-white/50 rounded-full bg-white/60 backdrop-blur-sm p-3 shadow-md hover:shadow-2xl hover:scale-105 active:scale-95 transition-all duration-300 ease-in-out">
+        <img src="./img/safari.png" alt="Safari" class="h-8 w-8">
+        <span class="font-medium text-gray-700 text-sm sm:text-base">Sign in with Safari</span>
+      </button>
+    </div>
+
+    <!-- Loading Spinner -->
+    <div id="spinner"
+      class="hidden fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col justify-center items-center bg-black/60 rounded-2xl p-6 shadow-2xl">
+      <div class="spinner mb-3"></div>
+      <p class="text-white text-lg font-medium">Logging in...</p>
+    </div>
+
+    <!-- Popup -->
+    <div id="popupMsg"
+      class="hidden fixed bottom-10 left-1/2 -translate-x-1/2 bg-green-500 text-white font-semibold px-6 py-3 rounded-full shadow-2xl backdrop-blur-md popup">
+    </div>
+
+    <script>
+      function login(platform) {
+        const spinner = document.getElementById("spinner");
+        const popup = document.getElementById("popupMsg");
+
+        // Show spinner
+        spinner.classList.remove("hidden");
+
+        setTimeout(() => {
+          spinner.classList.add("hidden");
+          popup.textContent = `Successfully logged in with ${platform}`;
+          popup.classList.remove("hidden");
+          popup.classList.add("popup");
+
+          setTimeout(() => {
+            popup.classList.add("hidden");
+          }, 2500);
+        }, 2000); // simulate loading time
+      }
+    </script>
+  </body>
+</html>
